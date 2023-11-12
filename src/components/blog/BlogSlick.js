@@ -2,7 +2,7 @@ import React, { Component, useRef, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import Blogdetail from "./Blogdetail";
+import CarouselDetail from "./CarouselDetail";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
@@ -45,7 +45,7 @@ const StyleSlickButton = styled.button`
 `;
 
 export default function BlogSlick() {
-  // const sliderRef = useState(null);
+  // const sliderRef = useRef(null);
 
   // const next = () => {
   //   sliderRef.current.slickNext();
@@ -84,26 +84,22 @@ export default function BlogSlick() {
         into some of the most iconic places in pop culture.
       </StyleCarouselContent>
       <div style={{ textAlign: "right", paddingRight: "5%" }}>
-        <StyleSlickButton
-          style={{ cursor: "pointer" }}
-          className="button"
-          onClick={previous}
-        >
+        <StyleSlickButton style={{ cursor: "pointer" }} onClick={previous}>
           <FontAwesomeIcon icon={faAngleLeft} />
         </StyleSlickButton>
-        <StyleSlickButton
-          style={{ cursor: "pointer" }}
-          className="button"
-          onClick={next}
-        >
+        <StyleSlickButton style={{ cursor: "pointer" }} onClick={next}>
           <FontAwesomeIcon icon={faAngleRight} />
         </StyleSlickButton>
       </div>
 
       <Slider ref={setSlider} {...settings}>
-        {blogDetailArr.map((item, index) => {
-          return <Blogdetail item={item} key={index} />;
-        })}
+        {blogDetailArr.map((item, index) => (
+          <CarouselDetail
+            item={item}
+            key={index}
+            style={{ display: "inline-block" }}
+          />
+        ))}
       </Slider>
     </StyleCarouselBlock>
   );

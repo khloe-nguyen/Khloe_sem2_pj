@@ -3,6 +3,7 @@ import "./Blog.css";
 import styled from "styled-components";
 import LatestNews from "./LatestNews";
 import BlogSlick from "./BlogSlick";
+import BlogCarousel from "./BlogCarousel";
 
 const StyledBlogTop = styled.div`
   display: grid;

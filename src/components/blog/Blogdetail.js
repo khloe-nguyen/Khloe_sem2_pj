@@ -4,38 +4,33 @@ import styled from "styled-components";
 const StyledGrid_1_BD = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  & .item {
-    padding: 0.7rem;
-  }
-
-  & h4 {
-    margin-top: 0.5rem;
-    font-weight: 800;
-    font-size: 2rem;
+  & a {
+    font-weight: 900;
+    font-size: 1.5rem;
   }
 
   & p {
     margin-top: 1rem;
     color: lightslategray;
+    font-weight: 300;
+    font-size: 1.1rem;
   }
 
   & img {
     width: 100%;
-    height: 12rem;
+    height: 13rem;
     object-fit: cover;
-    border-radius: 24px;
+    border-radius: 9px;
   }
 `;
 
 export default function Blogdetail({ item }) {
   return (
     <StyledGrid_1_BD>
-      <div className="item">
-        <img src={item.image} alt="" className="item item-1" />
-        <div className="item item-2">
-          <a href={item.linkurl}>{item.title}</a>
-          <p>{item.date}</p>
-        </div>
+      <img src={item.image} alt="" />
+      <div style={{ marginTop: "0.3rem", marginLeft: "1.3rem" }}>
+        <a href={item.linkurl}>{item.title}</a>
+        <p>{item.date} </p>
       </div>
     </StyledGrid_1_BD>
   );
