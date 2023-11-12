@@ -28,27 +28,15 @@ const StyledGrid_1_BD = styled.div`
 `;
 
 export default function Blogdetail({ item }) {
-  console.log("item", item);
   return (
-    <div>
-      <StyledGrid_1_BD>
-        {/* <img
-          src="https://catscanman.net/wp-content/uploads/2021/09/anh-meo-cute-de-thuong-33.jpg"
-          alt=""
-          className="item item-1"
-        />
+    <StyledGrid_1_BD>
+      <div className="item">
+        <img src={item.image} alt="" className="item item-1" />
         <div className="item item-2">
-          <h>Tilte</h>
-          <p>Content</p>
-        </div> */}
-        <div className="item">
-          {/* <img src={item.image} alt="" className="item-1" />
-          <div className="item-2">
-            <a href={item.linkurl}>{item.title}</a>
-            <p>{item.date}</p>
-          </div> */}
+          <a href={item.linkurl}>{item.title}</a>
+          <p>{item.date}</p>
         </div>
-      </StyledGrid_1_BD>
-    </div>
+      </div>
+    </StyledGrid_1_BD>
   );
 }

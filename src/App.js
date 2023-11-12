@@ -11,7 +11,6 @@ import Footer from "./components/footer/Footer";
 
 import UserDropDown from "./components/navbar/UserDropDown";
 import Blog from "./components/blog/Blog";
-import BlogSlick from "./components/blog/BlogSlick";
 
 function App() {
   return (
@@ -19,7 +18,6 @@ function App() {
       <NavBar />
       <HomeBody />
       <Blog />
-      <BlogSlick />
     </>
   );
 }

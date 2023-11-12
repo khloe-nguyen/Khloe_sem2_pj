@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useRef, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -6,10 +6,11 @@ import Blogdetail from "./Blogdetail";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { blogDetailArr } from "../../data/data";
 
 const StyleCarouselBlock = styled.div`
   padding: 3rem;
-  background-color: lightgray;
+  background-color: #f9f9f9; //màu chuẩn của web
 `;
 
 const StyleCarouselTilte = styled.p`
@@ -43,66 +44,67 @@ const StyleSlickButton = styled.button`
   color: grey;
 `;
 
-export default class BlogSlick extends Component {
-  constructor(props) {
-    super(props);
-    this.next = this.next.bind(this);
-    this.previous = this.previous.bind(this);
-  }
-  next() {
-    this.slider.slickNext();
-  }
-  previous() {
-    this.slider.slickPrev();
-  }
-  render() {
-    const settings = {
-      className: "center",
-      centerMode: true,
-      infinite: true,
-      centerPadding: "60px",
-      slidesToShow: 3,
-      speed: 500,
-    };
+export default function BlogSlick() {
+  // const sliderRef = useState(null);
 
-    return (
-      <StyleCarouselBlock>
-        <StyleCarouselTilte className="hehe">
-          One-of-a-kind stays, only on Airbnb
-        </StyleCarouselTilte>
-        <StyleCarouselContent>
-          Explore the unique, limited-time stays that give guests a rare glimpse
-          into some of the most iconic places in pop culture.
-        </StyleCarouselContent>
-        <div style={{ textAlign: "right", paddingRight: "5%" }}>
-          <StyleSlickButton
-            style={{ cursor: "pointer" }}
-            className="button"
-            onClick={this.previous}
-          >
-            <FontAwesomeIcon icon={faAngleLeft} />
-          </StyleSlickButton>
-          <StyleSlickButton
-            style={{ cursor: "pointer" }}
-            className="button"
-            onClick={this.next}
-          >
-            <FontAwesomeIcon icon={faAngleRight} />
-          </StyleSlickButton>
-        </div>
+  // const next = () => {
+  //   sliderRef.current.slickNext();
+  // };
 
-        <Slider ref={(c) => (this.slider = c)} {...settings}>
-          <Blogdetail />
-          <Blogdetail />
-          <Blogdetail />
-          <Blogdetail />
-          <Blogdetail />
-          <Blogdetail />
-          <Blogdetail />
-          <Blogdetail />
-          <Blogdetail />
-        </Slider>
-      </StyleCarouselBlock>
-    );
-  }
+  // const previous = () => {
+  //   sliderRef.current.slickPrev();
+  // };
+
+  const [slider, setSlider] = useState(null);
+
+  const next = () => {
+    slider.slickNext();
+  };
+
+  const previous = () => {
+    slider.slickPrev();
+  };
+
+  const settings = {
+    className: "center",
+    centerMode: true,
+    infinite: true,
+    centerPadding: "60px",
+    slidesToShow: 3,
+    speed: 500,
+  };
+
+  return (
+    <StyleCarouselBlock>
+      <StyleCarouselTilte className="hehe">
+        One-of-a-kind stays, only on Airbnb
+      </StyleCarouselTilte>
+      <StyleCarouselContent>
+        Explore the unique, limited-time stays that give guests a rare glimpse
+        into some of the most iconic places in pop culture.
+      </StyleCarouselContent>
+      <div style={{ textAlign: "right", paddingRight: "5%" }}>
+        <StyleSlickButton
+          style={{ cursor: "pointer" }}
+          className="button"
+          onClick={previous}
+        >
+          <FontAwesomeIcon icon={faAngleLeft} />
+        </StyleSlickButton>
+        <StyleSlickButton
+          style={{ cursor: "pointer" }}
+          className="button"
+          onClick={next}
+        >
+          <FontAwesomeIcon icon={faAngleRight} />
+        </StyleSlickButton>
+      </div>
+
+      <Slider ref={setSlider} {...settings}>
+        {blogDetailArr.map((item, index) => {
+          return <Blogdetail item={item} key={index} />;
+        })}
+      </Slider>
+    </StyleCarouselBlock>
+  );
 }
